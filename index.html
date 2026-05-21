@@ -39,6 +39,50 @@ body{min-height:100%;height:auto;overflow-y:auto;overflow-x:hidden;overscroll-be
 @media (min-width:768px){body{background:#f6f7fb}.page{display:none}.page.active{display:flex;justify-content:center;align-items:flex-start}.app{box-shadow:0 16px 45px rgba(16,24,40,.10);border-left:1px solid #eee;border-right:1px solid #eee}.app.wide{max-width:760px}.tabs{grid-template-columns:repeat(3,1fr);background:#f3f4f6;border:1px solid #e5e7eb;border-radius:18px;overflow:hidden;gap:0}.tab{border:0;border-radius:0}.proofs{grid-template-columns:1fr 1fr}.video-frame.final{max-height:560px}.center,.selected{width:100%;}.stats-grid{gap:12px}}
 @supports not (height:100svh){.page{min-height:100vh}.center,.selected{min-height:calc(100vh - 42px)}.app{min-height:100vh}.spin-wrap{min-height:calc(100vh - 56px)}}
 
+
+
+/* === GLOBAL WITHDRAWAL TOASTS FIX === */
+#globalToastWrap{
+  position:fixed!important;
+  left:max(12px,env(safe-area-inset-left))!important;
+  bottom:max(12px,env(safe-area-inset-bottom))!important;
+  z-index:2147483647!important;
+  display:flex!important;
+  flex-direction:column-reverse!important;
+  gap:8px!important;
+  width:min(330px,calc(100vw - 24px))!important;
+  pointer-events:none!important;
+  transform:translateZ(0)!important;
+}
+.global-toast{
+  width:100%!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:10px 12px!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.98)!important;
+  border:1px solid rgba(255,49,95,.14)!important;
+  box-shadow:0 14px 34px rgba(16,24,40,.22)!important;
+  color:#101828!important;
+  font-family:Inter,Arial,sans-serif!important;
+  animation:globalToastIn .22s ease-out, globalToastOut .28s ease-in 2.45s forwards!important;
+  will-change:transform,opacity!important;
+}
+.global-toast-avatar{
+  width:36px!important;height:36px!important;min-width:36px!important;
+  border-radius:50%!important;display:grid!important;place-items:center!important;
+  background:linear-gradient(135deg,#ff315f,#2dd8d8)!important;
+  color:#fff!important;font-weight:950!important;font-size:14px!important;
+}
+.global-toast-main{min-width:0!important;line-height:1.15!important;}
+.global-toast-name{font-size:13px!important;font-weight:950!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+.global-toast-text{font-size:12px!important;color:#667085!important;margin-top:3px!important;}
+.global-toast-amount{margin-left:auto!important;color:#16a34a!important;font-size:16px!important;font-weight:950!important;white-space:nowrap!important;}
+@keyframes globalToastIn{from{opacity:0;transform:translate3d(-22px,16px,0) scale(.96)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes globalToastOut{to{opacity:0;transform:translate3d(-12px,14px,0) scale(.98)}}
+@media(max-width:480px){#globalToastWrap{left:10px!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;width:min(300px,calc(100vw - 20px))!important}.global-toast{padding:9px 10px!important;border-radius:14px!important}.global-toast-avatar{width:32px!important;height:32px!important;min-width:32px!important}.global-toast-amount{font-size:15px!important}}
+
 </style>
 </head>
 <body>
@@ -64,5 +108,317 @@ document.addEventListener('click',e=>{if(e.target.classList.contains('tab')){con
 function setupSpin(){spinCount=0;$('#spinHeadBal').textContent='178.40';$('#spinBal').textContent='178.40';$('#spinNote').classList.add('hidden');$('#spinSuccess').classList.add('hidden');$('#wheel').style.transform='rotate(0deg)';$('#spinBtn').disabled=false;$('#spinBtn').textContent=' SPIN TO MULTIPLY';$('#spinBtn').onclick=spinWheel}function spinWheel(){spinCount++;$('#spinBtn').disabled=true;const first=spinCount===1;$('#wheel').style.transform=first?'rotate(1755deg)':'rotate(3915deg)';setTimeout(()=>{if(first){$('#spinNote').classList.remove('hidden');$('#spinBtn').disabled=false;$('#spinBtn').textContent=' FREE BONUS SPIN!'}else{$('#spinBal').textContent='356.80';$('#spinHeadBal').textContent='356.80';$('#successAmount').textContent='$356.80';$('#spinSuccess').classList.remove('hidden');$('#spinBtn').disabled=false;$('#spinBtn').textContent='CONTINUE TO VIDEO TESTIMONIAL ❯';$('#spinBtn').onclick=()=>go('final')}},4200)}function setupFinal(){fillLists();$('#finalVideo').play().catch(()=>{})}
 renderChoices();syncName();route();
 </script>
+
+<div id="globalToastWrap" aria-live="polite" aria-atomic="true"></div>
+<script>
+(function(){
+  const names=['James K.','Oliver M.','Liam T.','Noah B.','Ethan S.','Lucas D.','Henry W.','Jack P.','Daniel R.','Logan C.','Mason A.','Aiden F.','Ryan H.','Carter J.','Wyatt N.','Dylan V.'];
+  const wrapId='globalToastWrap';
+  function amount(){return (Math.random()*(186-19)+19).toFixed(2)}
+  function initials(name){return name.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase()}
+  function showToast(){
+    const wrap=document.getElementById(wrapId);
+    if(!wrap)return;
+    const name=names[Math.floor(Math.random()*names.length)];
+    const el=document.createElement('div');
+    el.className='global-toast';
+    el.innerHTML='<div class="global-toast-avatar">'+initials(name)+'</div><div class="global-toast-main"><div class="global-toast-name">'+name+'</div><div class="global-toast-text">Withdrawal approved</div></div><div class="global-toast-amount">+$'+amount()+'</div>';
+    wrap.appendChild(el);
+    while(wrap.children.length>2)wrap.removeChild(wrap.firstElementChild);
+    setTimeout(()=>{el.remove()},2800);
+  }
+  function loop(){
+    showToast();
+    setTimeout(loop,2200+Math.random()*2600);
+  }
+  window.addEventListener('load',()=>setTimeout(loop,900));
+})();
+</script>
+
+
+<!-- === FIXED GLOBAL WITHDRAWAL NOTIFICATIONS: all pages / desktop + mobile === -->
+<style id="withdrawal-toast-fixed-style">
+  #withdrawalToastLayer{
+    position:fixed!important;
+    left:14px!important;
+    bottom:calc(14px + env(safe-area-inset-bottom,0px))!important;
+    width:min(340px,calc(100vw - 28px))!important;
+    z-index:2147483647!important;
+    display:flex!important;
+    flex-direction:column-reverse!important;
+    gap:9px!important;
+    pointer-events:none!important;
+    overflow:visible!important;
+  }
+  .withdrawal-live-toast{
+    width:100%!important;
+    min-height:58px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:10px!important;
+    padding:10px 12px!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.98)!important;
+    color:#101828!important;
+    border:1px solid rgba(255,49,95,.16)!important;
+    box-shadow:0 16px 42px rgba(16,24,40,.24)!important;
+    font-family:Inter,Arial,sans-serif!important;
+    opacity:0!important;
+    transform:translate3d(-24px,18px,0) scale(.96)!important;
+    animation:withdrawToastIn .24s ease-out forwards, withdrawToastOut .28s ease-in 2.65s forwards!important;
+    will-change:opacity,transform!important;
+  }
+  .withdrawal-live-avatar{
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    border-radius:50%!important;
+    display:grid!important;
+    place-items:center!important;
+    background:linear-gradient(135deg,#ff315f,#2dd8d8)!important;
+    color:#fff!important;
+    font-weight:950!important;
+    font-size:13px!important;
+    box-shadow:0 6px 14px rgba(255,49,95,.22)!important;
+  }
+  .withdrawal-live-info{min-width:0!important;line-height:1.15!important;}
+  .withdrawal-live-name{font-size:13px!important;font-weight:950!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  .withdrawal-live-status{font-size:12px!important;color:#667085!important;margin-top:3px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  .withdrawal-live-amount{margin-left:auto!important;color:#16a34a!important;font-size:17px!important;font-weight:950!important;white-space:nowrap!important;}
+  @keyframes withdrawToastIn{to{opacity:1!important;transform:translate3d(0,0,0) scale(1)!important;}}
+  @keyframes withdrawToastOut{to{opacity:0!important;transform:translate3d(-12px,14px,0) scale(.98)!important;}}
+  @media(max-width:480px){
+    #withdrawalToastLayer{left:10px!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;width:min(315px,calc(100vw - 20px))!important;gap:7px!important;}
+    .withdrawal-live-toast{min-height:54px!important;padding:9px 10px!important;border-radius:16px!important;}
+    .withdrawal-live-avatar{width:34px!important;height:34px!important;min-width:34px!important;font-size:12px!important;}
+    .withdrawal-live-amount{font-size:15px!important;}
+  }
+</style>
+<script id="withdrawal-toast-fixed-script">
+(function(){
+  const people = [
+    'James K.','Oliver M.','Liam T.','Noah B.','Ethan S.','Lucas D.','Henry W.','Jack P.',
+    'Daniel R.','Logan C.','Mason A.','Aiden F.','Ryan H.','Carter J.','Wyatt N.','Dylan V.',
+    'Emma S.','Sophia B.','Olivia R.','Mia C.','Amelia G.','Ava P.','Charlotte W.','Grace L.'
+  ];
+  const methods = ['PayPal','CashApp','Bank card','Zelle','Instant payout'];
+  function money(){ return (Math.random() * (186 - 19) + 19).toFixed(2); }
+  function initials(name){ return name.split(/\s+/).map(part => part.charAt(0)).join('').replace(/\./g,'').slice(0,2).toUpperCase(); }
+  function ensureLayer(){
+    let layer = document.getElementById('withdrawalToastLayer');
+    if(!layer){
+      layer = document.createElement('div');
+      layer.id = 'withdrawalToastLayer';
+      layer.setAttribute('aria-live','polite');
+      layer.setAttribute('aria-atomic','false');
+      document.body.appendChild(layer);
+    }
+    return layer;
+  }
+  function showWithdrawalToast(){
+    const layer = ensureLayer();
+    const name = people[Math.floor(Math.random() * people.length)];
+    const method = methods[Math.floor(Math.random() * methods.length)];
+    const toast = document.createElement('div');
+    toast.className = 'withdrawal-live-toast';
+    toast.innerHTML = '<div class="withdrawal-live-avatar">' + initials(name) + '</div>' +
+      '<div class="withdrawal-live-info"><div class="withdrawal-live-name">' + name + '</div>' +
+      '<div class="withdrawal-live-status">Withdrew via ' + method + '</div></div>' +
+      '<div class="withdrawal-live-amount">$' + money() + '</div>';
+    layer.appendChild(toast);
+    while(layer.children.length > 2){ layer.removeChild(layer.firstElementChild); }
+    window.setTimeout(function(){ if(toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 3100);
+  }
+  function startWithdrawalToasts(){
+    ensureLayer();
+    showWithdrawalToast();
+    (function loop(){
+      window.setTimeout(function(){
+        showWithdrawalToast();
+        loop();
+      }, 2400 + Math.random() * 2600);
+    })();
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startWithdrawalToasts);
+  else startWithdrawalToasts();
+})();
+</script>
+
+
+
+
+<!-- === FINAL MOBILE/DESKTOP FIX: verification, reward cursor, live withdrawal toasts === -->
+<style id="ultimate-live-withdrawal-verification-fix">
+  .reaction:not(:disabled), .earn, .reward, .coin, .tab, .rank-row, .proof, .review-card, .balance-card, .mission, .final-reward { cursor:pointer!important; }
+  .reaction:disabled, button:disabled { cursor:not-allowed!important; }
+
+  /* hide older duplicated toast layers, keep only the final one */
+  #globalToastWrap, #withdrawalToastLayer { display:none!important; visibility:hidden!important; }
+  #liveWithdrawalToasts{
+    position:fixed!important;
+    left:18px!important;
+    bottom:calc(18px + env(safe-area-inset-bottom, 0px))!important;
+    width:min(448px, calc(100vw - 36px))!important;
+    z-index:2147483647!important;
+    pointer-events:none!important;
+    display:flex!important;
+    flex-direction:column-reverse!important;
+    gap:10px!important;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  .live-withdrawal-toast{
+    width:100%!important;
+    min-height:78px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:16px!important;
+    padding:14px 20px!important;
+    background:#fff!important;
+    border:1px solid #e6e9ef!important;
+    border-radius:28px!important;
+    box-shadow:0 14px 34px rgba(16,24,40,.18)!important;
+    font-family:Inter,Arial,sans-serif!important;
+    opacity:0!important;
+    transform:translate3d(-30px,18px,0) scale(.96)!important;
+    animation:liveToastIn .26s ease-out forwards, liveToastOut .28s ease-in 2.45s forwards!important;
+    will-change:transform,opacity!important;
+  }
+  .live-withdrawal-avatar{
+    width:52px!important;height:52px!important;min-width:52px!important;border-radius:50%!important;
+    display:grid!important;place-items:center!important;
+    background:linear-gradient(135deg,#ff315f 0%,#ffd447 48%,#27d7d9 100%)!important;
+    color:#8a6100!important;font-weight:950!important;font-size:22px!important;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)!important;
+  }
+  .live-withdrawal-info{min-width:0!important;line-height:1.12!important;flex:1 1 auto!important;}
+  .live-withdrawal-name{font-size:22px!important;font-weight:950!important;color:#101828!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  .live-withdrawal-city{font-size:18px!important;font-weight:600!important;color:#98a2b3!important;margin-top:5px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  .live-withdrawal-amount{margin-left:auto!important;padding:12px 18px!important;border-radius:999px!important;background:#fff1f4!important;color:#ff315f!important;font-weight:950!important;font-size:22px!important;white-space:nowrap!important;}
+  @keyframes liveToastIn{to{opacity:1;transform:translate3d(0,0,0) scale(1);}}
+  @keyframes liveToastOut{to{opacity:0;transform:translate3d(-16px,16px,0) scale(.98);}}
+
+  /* Profile verification animation */
+  #selected .verify{position:relative!important;overflow:hidden!important;transition:background .25s ease,border-color .25s ease!important;}
+  #selected .verify .bar{background:#e5e7eb!important;position:relative!important;overflow:hidden!important;}
+  #selected .verify .bar:before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--verify-progress,0%);background:linear-gradient(90deg,#ff315f,#2dd8d8);border-radius:20px;transition:width .08s linear;}
+  #selected .verify .bar:after{content:""!important;position:absolute!important;inset:0!important;background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent)!important;animation:verifyShine 1.1s linear infinite!important;}
+  @keyframes verifyShine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+  #selected .verify .check{opacity:0!important;transform:translateY(10px)!important;transition:opacity .28s ease,transform .28s ease!important;}
+  #selected .verify .check.is-visible{opacity:1!important;transform:translateY(0)!important;}
+  #selected .verify.is-done{border-color:#bbf7d0!important;background:#f0fdf4!important;}
+  #selected .verify.is-done h3{color:#16a34a!important;}
+  #selected .verify.is-done h3:after{content:" — VERIFIED";}
+  #selected .verify.is-done .bar:after{display:none!important;}
+  #selected .verify-button.verifying{opacity:.48!important;cursor:not-allowed!important;filter:grayscale(.15)!important;}
+
+  @media(max-width:520px){
+    #liveWithdrawalToasts{left:12px!important;bottom:calc(12px + env(safe-area-inset-bottom, 0px))!important;width:min(360px, calc(100vw - 24px))!important;}
+    .live-withdrawal-toast{min-height:64px!important;padding:11px 14px!important;border-radius:24px!important;gap:12px!important;}
+    .live-withdrawal-avatar{width:44px!important;height:44px!important;min-width:44px!important;font-size:18px!important;}
+    .live-withdrawal-name{font-size:18px!important;}
+    .live-withdrawal-city{font-size:15px!important;}
+    .live-withdrawal-amount{font-size:18px!important;padding:10px 14px!important;}
+  }
+  @media(max-width:360px){
+    .live-withdrawal-name{font-size:16px!important;}.live-withdrawal-city{font-size:13px!important;}.live-withdrawal-amount{font-size:16px!important;padding:8px 11px!important;}
+  }
+</style>
+<script id="ultimate-live-withdrawal-verification-script">
+(function(){
+  'use strict';
+  const people=['Sarah M.','James K.','Emily R.','Michael B.','Olivia T.','Daniel S.','Sophia L.','William C.','Emma P.','Lucas D.','Mia H.','Noah W.','Grace A.','Henry F.','Chloe N.','Jack V.','Ava G.','Ethan J.','Lily K.','Ryan P.','Zoey C.','Mason R.'];
+  const cities=['Miami','New York','Austin','Chicago','Seattle','Boston','Denver','Orlando','Dallas','Phoenix','San Diego','Atlanta','Tampa','Las Vegas','Los Angeles','Portland'];
+  function $(s){return document.querySelector(s)}
+  function amount(){return (Math.random()*(196-18)+18).toFixed(2)}
+  function ensureToastLayer(){
+    let layer=document.getElementById('liveWithdrawalToasts');
+    if(!layer){layer=document.createElement('div');layer.id='liveWithdrawalToasts';layer.setAttribute('aria-live','polite');document.body.appendChild(layer)}
+    return layer;
+  }
+  function showWithdrawalToast(){
+    const layer=ensureToastLayer();
+    const name=people[Math.floor(Math.random()*people.length)];
+    const city=cities[Math.floor(Math.random()*cities.length)];
+    const el=document.createElement('div');
+    el.className='live-withdrawal-toast';
+    el.innerHTML='<div class="live-withdrawal-avatar">T</div><div class="live-withdrawal-info"><div class="live-withdrawal-name">'+name+'</div><div class="live-withdrawal-city">'+city+'</div></div><div class="live-withdrawal-amount">+$'+amount()+'</div>';
+    layer.appendChild(el);
+    while(layer.children.length>1){layer.removeChild(layer.firstElementChild)}
+    setTimeout(function(){if(el && el.parentNode) el.parentNode.removeChild(el)}, 2850);
+  }
+  function startToasts(){
+    ensureToastLayer();
+    if(window.__liveWithdrawalToastsStarted) return;
+    window.__liveWithdrawalToastsStarted=true;
+    setTimeout(showWithdrawalToast, 350);
+    (function loop(){
+      setTimeout(function(){showWithdrawalToast();loop();}, 2400+Math.random()*1800);
+    })();
+  }
+
+  function prepareVerificationButton(){
+    const btn=$('#selected .btn');
+    if(!btn) return null;
+    btn.classList.add('verify-button');
+    if(!btn.dataset.boundVerify){
+      btn.dataset.boundVerify='1';
+      btn.addEventListener('click', function(e){
+        if(btn.disabled || btn.classList.contains('verifying')){e.preventDefault();e.stopImmediatePropagation();return false;}
+      }, true);
+    }
+    return btn;
+  }
+  function startProfileVerification(){
+    const box=$('#selected .verify');
+    const btn=prepareVerificationButton();
+    if(!box || !btn) return;
+    const checks=Array.prototype.slice.call(box.querySelectorAll('.check'));
+    box.classList.remove('is-done');
+    box.style.setProperty('--verify-progress','0%');
+    checks.forEach(function(c){c.classList.remove('is-visible')});
+    btn.disabled=true;
+    btn.classList.add('verifying');
+    btn.textContent='VERIFYING...';
+    const total=3000;
+    const start=(window.performance&&performance.now)?performance.now():Date.now();
+    function tick(now){
+      now=now||Date.now();
+      const pct=Math.min(100, ((now-start)/total)*100);
+      box.style.setProperty('--verify-progress', pct+'%');
+      if(pct<100) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    checks.forEach(function(c,i){setTimeout(function(){c.classList.add('is-visible')}, 500+i*520)});
+    setTimeout(function(){
+      box.style.setProperty('--verify-progress','100%');
+      box.classList.add('is-done');
+      btn.disabled=false;
+      btn.classList.remove('verifying');
+      btn.textContent='CONTINUE ❯';
+    }, total);
+  }
+  window.startProfileVerification=startProfileVerification;
+
+  function hookNavigation(){
+    if(window.__verifyGoHooked) return;
+    window.__verifyGoHooked=true;
+    const originalGo=window.go;
+    window.go=function(id){
+      if(typeof originalGo==='function') originalGo(id);
+      if(id==='selected') setTimeout(startProfileVerification, 40);
+    };
+  }
+  function boot(){
+    startToasts();
+    prepareVerificationButton();
+    hookNavigation();
+    if($('#selected.page.active')) startProfileVerification();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  window.addEventListener('pageshow', function(){startToasts();});
+})();
+</script>
+
 </body>
 </html>

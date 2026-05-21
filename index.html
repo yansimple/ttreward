@@ -219,7 +219,7 @@ renderChoices();syncName();route();
     clearTimeout(hideTimer);
     if(!shouldShowPopup()){if(popup) popup.classList.remove('show');return;}
     setTimeout(showPopup,700);
-    popupTimer=setInterval(showPopup,3900);
+    popupTimer=setInterval(showPopup,5000);
   }
   function onStateChange(){watchSelectedPage();restartPopups();}
   window.addEventListener('load',function(){

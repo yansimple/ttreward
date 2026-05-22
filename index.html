@@ -2,21 +2,277 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>TikTok Rewards</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;font-family:Inter,Arial,sans-serif;background:#fff;color:#101828}body{overflow:hidden}button,input{font:inherit}.page{display:none;height:100dvh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;background:#fff}.page.active{display:block}.pink{color:#ff315f}.cyan{color:#22d3d6}.muted{color:#667085}.top{height:42px;min-height:42px;background:#fff1f4;border-bottom:1px solid #f8d9e0;display:flex;align-items:center;justify-content:center;font-size:14px;color:#667085;position:sticky;top:0;z-index:10}.dot{width:11px;height:11px;border-radius:50%;background:#22c55e;margin-right:8px;box-shadow:0 0 0 4px rgba(34,197,94,.12)}.btn{width:100%;height:58px;border:0;border-radius:17px;background:linear-gradient(120deg,#ff315f,#2dd8d8);color:#fff;font-size:20px;font-weight:900;letter-spacing:.03em;cursor:pointer;box-shadow:0 12px 28px rgba(255,49,95,.18);text-decoration:none;display:flex;align-items:center;justify-content:center}.btn:disabled{opacity:.38;cursor:not-allowed}.btn.small{height:48px;font-size:16px}.coin{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#ffd447;border:1px solid #e2b700;color:#9a6b00;font-weight:900}.center{min-height:calc(100dvh - 42px);display:flex;align-items:center;justify-content:center;padding:18px}.card{text-align:center;width:min(100%,420px)}.brand{display:flex;align-items:center;justify-content:center;gap:12px;font-size:30px;font-weight:900;margin-bottom:22px}.logo,.app-logo{display:grid;place-items:center;background:#000;color:#fff;text-shadow:3px 0 #25f4ee,-3px 0 #fe2c55}.logo{width:46px;height:46px;border-radius:11px;font-size:27px}.app-logo{width:38px;height:38px;border-radius:9px}.title{font-size:clamp(27px,4.5vh,36px);line-height:1.08;margin:0 0 12px;font-weight:950}.subtitle{font-size:16px;color:#667085;margin:0 0 24px}.name-input{width:100%;height:58px;border:1px solid #d0d5dd;border-radius:16px;background:#f9fafb;padding:0 20px;font-size:18px;outline:0;margin-bottom:14px}.name-input:focus,.name-input.filled{border:3px solid #ff315f;background:#fff}.safe{margin-top:18px;color:#98a2b3;font-size:13px}.selected{min-height:calc(100dvh - 42px);max-width:620px;margin:auto;padding:16px 18px;text-align:center;display:flex;flex-direction:column;justify-content:center}.avatar{width:76px;height:76px;border:4px solid #ff315f;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;color:#ff315f;font-size:34px;font-weight:950}.big-title{font-size:clamp(27px,5vh,38px);line-height:1.04;margin:0;font-weight:950;overflow-wrap:anywhere}.selected-sub{font-size:16px;line-height:1.35;color:#667085;margin:12px auto;max-width:520px}.verify{background:#fbfcfd;border:1px solid #e4e7ec;border-radius:18px;padding:15px 18px;text-align:left;margin:0 auto 12px;width:100%;max-width:560px}.verify h3{margin:0 0 10px;color:#ff315f;letter-spacing:.1em;font-size:15px}.bar{height:8px;border-radius:20px;background:linear-gradient(90deg,#ff315f,#2dd8d8);margin-bottom:10px;position:relative;overflow:hidden}.bar:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:shine 1.4s infinite}.check{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:16px;font-weight:800}.check span{width:24px;height:24px;min-width:24px;border:2px solid #22c55e;border-radius:50%;display:grid;place-items:center;color:#22c55e}.app{min-height:100dvh;max-width:430px;margin:auto;background:#fff;border-left:1px solid #eee;border-right:1px solid #eee;display:flex;flex-direction:column}.app.wide{max-width:620px}.app-head{height:56px;min-height:56px;padding:0 14px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;background:#fff;position:sticky;top:0;z-index:11}.sub{font-size:10px;letter-spacing:.14em;color:#98a2b3;font-weight:800}.app-brand{display:flex;align-items:center;gap:10px}.pill{padding:7px 11px;border:1px solid #e5e7eb;border-radius:24px;background:#f8fafc;font-weight:900;font-size:14px}.user{width:36px;height:36px;border:3px solid #ff315f;border-radius:50%;display:grid;place-items:center;font-weight:800}.mission{margin:10px 14px;padding:12px;border:1px solid #ffd4de;background:#fff1f4;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:13px}.earn{border:0;border-radius:999px;background:#fff;color:#ff315f;font-weight:950;padding:8px 12px}.progress{display:flex;justify-content:center;gap:7px;margin:0 0 8px}.seg{width:42px;height:5px;border-radius:99px;background:#e5e7eb}.seg.on{background:#ff315f}.video-frame{height:clamp(290px,48dvh,470px);margin:0 18px 10px;border-radius:14px;background:#000;position:relative;overflow:hidden;box-shadow:0 8px 22px rgba(16,24,40,.12)}.video-frame.final{height:min(58dvh,540px);min-height:300px;border:2px solid #ff315f;margin:12px 18px 10px}.video-frame video{width:100%;height:100%;object-fit:cover;display:block}.video-frame:after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(transparent,rgba(0,0,0,.65));pointer-events:none}.caption{position:absolute;left:14px;bottom:14px;color:#fff;font-weight:800;text-shadow:0 1px 2px #000;z-index:2;font-size:13px}.actions{position:absolute;right:10px;bottom:86px;color:#fff;text-align:center;font-size:11px;font-weight:800;z-index:2}.act{margin-top:13px;font-size:22px}.watch-lock{position:absolute;inset:0;z-index:20;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:900;cursor:pointer;padding:20px}.watch-lock.hide{opacity:0;pointer-events:none}.play-circle{width:68px;height:68px;border-radius:50%;background:#fff;color:#ff315f;display:grid;place-items:center;margin:0 auto 12px;font-size:32px}.video-line{position:absolute;left:0;bottom:0;height:5px;background:#ff315f;width:0%;z-index:5}.section{padding:0 14px 14px}.section-title{display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:16px;margin-bottom:8px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.reaction{height:62px;border:1px solid #d0d5dd;border-radius:13px;background:#fff;font-weight:900;font-size:10px;color:#ff315f}.reaction b{display:block;font-size:22px;margin-bottom:3px}.reaction:disabled{opacity:.45;background:#f3f4f6}.telegram{margin-top:10px;padding:11px;border-radius:14px;background:#eaffff;border:1px solid #bff8f8;text-align:center;font-size:13px;font-weight:900}.telegram a{color:#07aeca;text-decoration:none}.spin-wrap{padding:12px 18px 28px;text-align:center;display:flex;flex-direction:column;justify-content:flex-start;min-height:calc(100dvh - 56px)}.balance-card{padding:14px;border:1px solid #e5e7eb;background:#f9fafb;border-radius:14px;margin:8px 0}.balance-card .amount{font-size:31px;font-weight:950}.bonus-line{font-size:13px;color:#ff315f;font-weight:900;margin:4px 0 10px}.spin-note{padding:13px;margin:8px 0;border-radius:13px;background:#fff1f4;border:1px solid #ffd4de;font-weight:900}.spin-success{display:none;padding:14px;margin:8px 0;border-radius:13px;background:#fff1f4;border:2px solid #ff315f;font-weight:950}.wheel-box{position:relative;margin:0 auto 10px;width:min(300px,78vw)}.pointer{width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:30px solid #ff315f;margin:0 auto -18px;position:relative;z-index:2}.wheel{width:min(275px,43dvh,76vw);height:min(275px,43dvh,76vw);border-radius:50%;margin:20px auto;background:conic-gradient(#ff315f 0 45deg,#27d7d9 45deg 90deg,#ff315f 90deg 135deg,#27d7d9 135deg 180deg,#ff315f 180deg 225deg,#27d7d9 225deg 270deg,#ff315f 270deg 315deg,#27d7d9 315deg);border:9px solid #fff;box-shadow:0 12px 35px rgba(16,24,40,.2);transition:transform 4s cubic-bezier(.12,.72,.16,1);position:relative;overflow:hidden}.wheel:after{content:"2x";position:absolute;inset:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#ff315f;font-weight:950;z-index:3}.wheel-label{position:absolute;left:50%;top:50%;width:70px;margin-left:-35px;margin-top:-11px;text-align:center;color:#fff;font-size:16px;font-weight:950;text-shadow:0 2px 6px rgba(0,0,0,.35);z-index:2;transform-origin:35px 11px}.wheel-label:nth-child(1){transform:rotate(22.5deg) translateY(-86px) rotate(-22.5deg)}.wheel-label:nth-child(2){transform:rotate(67.5deg) translateY(-86px) rotate(-67.5deg)}.wheel-label:nth-child(3){transform:rotate(112.5deg) translateY(-86px) rotate(-112.5deg)}.wheel-label:nth-child(4){transform:rotate(157.5deg) translateY(-86px) rotate(-157.5deg)}.wheel-label:nth-child(5){transform:rotate(202.5deg) translateY(-86px) rotate(-202.5deg)}.wheel-label:nth-child(6){transform:rotate(247.5deg) translateY(-86px) rotate(-247.5deg)}.wheel-label:nth-child(7){transform:rotate(292.5deg) translateY(-86px) rotate(-292.5deg)}.wheel-label:nth-child(8){transform:rotate(337.5deg) translateY(-86px) rotate(-337.5deg)}.final-top{text-align:center;padding:12px 16px 0}.final-top h3{color:#ff315f;margin:0 0 5px}.final-top p{font-size:13px;margin:0;color:#667085}.final-reward{margin:10px 18px;padding:14px;text-align:center;background:#fff1f4;border-radius:14px}.final-reward b{font-size:25px;color:#ff315f}.withdraw-btn{margin:12px 18px;width:auto;animation:pulse 1s infinite}.tabs{display:grid;grid-template-columns:repeat(3,1fr);margin:14px 18px 12px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:18px;overflow:hidden}.tab{height:46px;border:0;background:transparent;font-weight:950;color:#98a2b3}.tab.active{background:linear-gradient(120deg,#ff315f,#2dd8d8);color:#fff}.panel{display:none;padding:0 18px 22px}.panel.active{display:block}.live-heading{display:flex;justify-content:space-between;align-items:center;font-size:22px;font-weight:950;margin:12px 0}.rank-row{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:13px;margin:9px 0;border:1px solid #e5e7eb;border-radius:16px;background:#fbfcff}.rank-num{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#ff315f;color:#fff;font-weight:950}.rank-person{display:flex;align-items:center;gap:10px;min-width:0}.rank-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:950;background:linear-gradient(135deg,#111827,#94a3b8)}.rank-name{font-size:16px;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.verified{font-size:12px;font-weight:900;color:#22d3d6}.rank-money{text-align:right;color:#ff315f;font-weight:950;font-size:18px}.proofs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.proof{padding:14px;border:1px solid #e5e7eb;border-radius:16px;background:#fff;box-shadow:0 8px 18px rgba(16,24,40,.06)}.proof-head{display:flex;gap:10px;align-items:center;margin-bottom:12px}.payicon{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:950;background:#0ea5e9}.payicon.cash{background:#22c55e}.receipt{background:#f8fafc;border-radius:10px;padding:12px}.proof .sum{font-size:22px;font-weight:950}.reviews-grid{display:grid;gap:10px}.review-card{padding:14px;border:1px solid #e5e7eb;border-radius:16px;background:#fff;box-shadow:0 8px 18px rgba(16,24,40,.06)}.review-card b{font-size:16px}.faq details{border:1px solid #e5e7eb;border-radius:12px;padding:13px;margin:8px 0}.modal{position:fixed;inset:0;background:rgba(15,23,42,.52);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}.modal.show{display:flex}.modal-card{width:min(390px,100%);background:#fff;border-radius:24px;padding:26px 22px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.25);animation:pop .35s ease}.modal-icon{width:66px;height:66px;border-radius:50%;background:#fff1f4;display:grid;place-items:center;margin:0 auto 14px;font-size:32px}.modal-title{font-size:26px;font-weight:950;margin:0 0 8px}.modal-sum{font-size:38px;font-weight:950;color:#ff315f;margin:14px 0}.hidden{display:none!important}@keyframes shine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}@keyframes pop{from{opacity:0;transform:scale(.92) translateY(16px)}to{opacity:1;transform:none}}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}@media(max-width:600px){.top{height:38px;min-height:38px}.center,.selected{min-height:calc(100dvh - 38px)}.brand{font-size:25px}.logo{width:38px;height:38px}.title{font-size:26px}.selected{padding:10px 16px}.avatar{width:62px;height:62px;font-size:29px}.selected-sub{font-size:13px;margin:8px auto}.verify{padding:11px 13px}.verify h3{font-size:12px}.check{font-size:12px;margin:6px 0}.check span{width:20px;height:20px;min-width:20px;font-size:11px}.app{border:0;max-width:100%}.mission{padding:9px 11px;margin:8px 12px}.video-frame{height:42dvh;margin:0 14px 8px}.video-frame.final{height:min(54dvh,440px);min-height:280px}.reaction{height:44px}.spin-wrap{padding:8px 18px 28px}.wheel{width:min(238px,38dvh,74vw);height:min(238px,38dvh,74vw)}.wheel-label{font-size:14px}.wheel-label:nth-child(n){transform:rotate(calc((var(--i) * 45deg) - 22.5deg)) translateY(-76px) rotate(calc(-1*((var(--i) * 45deg) - 22.5deg)))}.rank-row{grid-template-columns:40px 1fr auto;gap:8px;padding:12px}.rank-avatar{width:38px;height:38px}.rank-name{font-size:15px}.rank-money{font-size:16px}.proofs{grid-template-columns:1fr}.tabs .tab{font-size:13px}}@media(max-height:700px){.subtitle,.safe{display:none}.video-frame{height:36dvh}.telegram{display:none}.reaction{height:40px}.wheel{width:min(210px,36dvh,70vw);height:min(210px,36dvh,70vw)}.balance-card{padding:10px}.spin-note,.spin-success{padding:10px}.btn{height:50px}.video-frame.final{height:min(48dvh,380px);min-height:260px}}
+*{box-sizing:border-box}
+html,body{margin:0;font-family:Arial,sans-serif;background:#fff;color:#111;overflow-x:hidden}
+.page{display:none;min-height:100vh;overflow-y:auto}
+.page.active{display:block}
+.btn{width:100%;border:0;border-radius:16px;padding:18px;background:linear-gradient(120deg,#ff315f,#24d8d8);color:#fff;font-size:20px;font-weight:900;cursor:pointer;text-decoration:none;text-align:center;display:block}
+.btn:disabled{opacity:.45}
+.top{height:44px;background:#fff1f4;display:flex;align-items:center;justify-content:center;color:#666;font-size:14px}
+.wrap{max-width:430px;margin:0 auto;padding:16px}
+.center{min-height:calc(100vh - 44px);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px}
+.logo{font-size:40px;font-weight:900;margin-bottom:20px}
+h1{font-size:34px;line-height:1.08;margin:0 0 14px}
+.pink{color:#ff315f}
+input{width:100%;height:60px;border:1px solid #ddd;border-radius:16px;padding:0 18px;font-size:18px;margin:18px 0}
+.card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:18px;padding:16px;margin:14px 0}
+.video-box{position:relative;background:#000;border-radius:18px;overflow:hidden;width:100%;aspect-ratio:9/16;margin:14px 0}
+.video-box video{width:100%;height:100%;object-fit:cover}
+.final-video{aspect-ratio:16/9}
+.final-video video{object-fit:contain}
+.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);color:#fff;text-align:center;font-weight:900;cursor:pointer;z-index:5}
+.play{width:70px;height:70px;border-radius:50%;background:#fff;color:#ff315f;display:grid;place-items:center;font-size:34px;margin:0 auto 12px}
+.progress{position:absolute;left:0;bottom:0;height:5px;background:#ff315f;width:0;z-index:6}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.react{height:64px;border:1px solid #ddd;border-radius:14px;background:#fff;color:#ff315f;font-weight:900;font-size:22px}
+.react:disabled{opacity:.4}
+.balance{font-size:26px;font-weight:900;color:#ff315f}
+.wheel{width:280px;height:280px;border-radius:50%;margin:25px auto;background:conic-gradient(#ff315f 0 45deg,#24d8d8 45deg 90deg,#ff315f 90deg 135deg,#24d8d8 135deg 180deg,#ff315f 180deg 225deg,#24d8d8 225deg 270deg,#ff315f 270deg 315deg,#24d8d8 315deg);transition:transform 4s cubic-bezier(.12,.72,.16,1);border:8px solid #fff;box-shadow:0 8px 28px rgba(0,0,0,.2)}
+.pointer{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:36px solid #ff315f;margin:0 auto -25px;position:relative;z-index:2}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);background:#f3f4f6;border-radius:14px;overflow:hidden;margin:16px 0}
+.tab{border:0;padding:14px 6px;font-weight:900;background:transparent}
+.tab.active{background:linear-gradient(120deg,#ff315f,#24d8d8);color:#fff}
+.panel{display:none}
+.panel.active{display:block}
+.row{display:flex;justify-content:space-between;align-items:center;border:1px solid #eee;background:#fafafa;border-radius:14px;padding:14px;margin:10px 0}
+.withdraw{animation:pulse 1s infinite;margin:16px 0}
+@keyframes pulse{50%{transform:scale(1.04)}}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal.show{display:flex}
+.modal-card{background:#fff;border-radius:24px;padding:26px;text-align:center;max-width:380px;width:100%}
+@media(max-width:600px){h1{font-size:28px}.wrap{padding:12px}.wheel{width:240px;height:240px}}
 </style>
 </head>
 <body>
-<section class="page active" id="page1"><div class="top"><span class="dot"></span><b id="onlineTop">5 182</b>&nbsp; members online now</div><div class="center"><div class="card"><div class="brand"><span class="logo">♪</span><span>TikTok Rewards</span></div><h1 class="title">Welcome! What's your first name?</h1><p class="subtitle">Enter your name to verify your exclusive access</p><input class="name-input" id="nameInput" placeholder="Your name" autocomplete="given-name"><button class="btn" id="nameBtn">CONTINUE ❯</button><div class="safe">♢ Secure session • Verified access</div></div></div></section>
-<section class="page" id="page2"><div class="top"><span class="dot"></span><b>5 302</b>&nbsp; online • Only 2 spots left</div><div class="selected"><div class="avatar" id="avatarLetter">N</div><h1 class="big-title"><span id="userNameTitle">Name</span>, You've Been <span class="pink">Selected</span></h1><p class="selected-sub">Exclusive members are already securing their benefits. Claim your spot before it's gone.</p><div class="verify"><h3>♢ PROFILE VERIFICATION</h3><div class="bar"></div><div class="check"><span>✓</span><b>Analyzing <span class="userNameText">Name</span>'s profile...</b></div><div class="check"><span>✓</span><b>Confirming eligibility...</b></div><div class="check"><span>✓</span><b>Reserving your spot...</b></div><div class="check"><span>✓</span><b>Access Granted ✔</b></div></div><button class="btn" onclick="go(3)">CONTINUE ❯</button></div></section>
-<section class="page" id="page3"><div class="app"><header class="app-head"><div class="app-brand"><span class="app-logo">♪</span><div><b>TikTok</b><div class="sub">REWARDS PROGRAM</div></div></div><div class="pill"><span class="coin">T</span> $0.00</div><div class="user" id="appUser">U</div></header><div class="mission"><div><b>Daily mission</b><br><span class="muted">Rate video 1/2 to earn coins</span></div><button class="earn"><span class="coin">T</span> +89</button></div><div class="progress"><span class="seg on"></span><span class="seg"></span></div><div class="video-frame"><video id="missionVideo" src="1.mp4" playsinline preload="metadata"></video><div class="video-line" id="videoLine"></div><div class="watch-lock" id="watchLock"><div><div class="play-circle">▶</div>Tap to play video<br><span class="muted" style="color:#fff;opacity:.85">Reactions unlock after the video ends</span></div></div><div class="caption">@creator_01<br>Watch till the end<br>#fyp #foryou #viral</div><div class="actions"><div class="act">❤</div>48.5K<div class="act">💬</div>4.9K<div class="act">↗</div>1.6K</div></div><div class="section"><div class="section-title"><span>Tap a reaction to earn coins</span><span class="pill" id="lockLabel">Locked</span></div><div class="grid"><button class="reaction" disabled><b>❤</b>Like</button><button class="reaction" disabled><b>⭐</b>Rate</button><button class="reaction" disabled><b>🔥</b>Hot</button></div><div class="telegram">Join our rewards channel: <a href="https://t.me/" target="_blank">Open Telegram</a></div></div></div></section>
-<section class="page" id="page4"><div class="app"><header class="app-head"><div class="app-brand"><span class="app-logo">♪</span><div><b>TikTok</b><div class="sub">REWARDS PROGRAM</div></div></div><div class="pill"><span class="coin">T</span> $178.40</div></header><main class="spin-wrap"><h1 class="title" style="margin-bottom:4px">Bonus multiplier</h1><p class="subtitle" style="margin-bottom:6px">Spin to multiply your earnings!</p><div class="balance-card"><div class="muted">Your current balance</div><div class="amount"><span class="coin">T</span> $178.40</div></div><div class="bonus-line">● 2 650 online &nbsp; Bonus spin available!</div><div class="spin-note" id="spinNote">Spin the wheel to unlock your final reward.</div><div class="spin-success" id="spinSuccess">2x MULTIPLIER! Your earnings doubled!<br><span class="pink" style="font-size:28px">$356.80</span></div><div class="wheel-box"><div class="pointer"></div><div class="wheel" id="wheel"><span class="wheel-label" style="--i:1">1.2x</span><span class="wheel-label" style="--i:2">2x</span><span class="wheel-label" style="--i:3">1.5x</span><span class="wheel-label" style="--i:4">2x</span><span class="wheel-label" style="--i:5">1.2x</span><span class="wheel-label" style="--i:6">2x</span><span class="wheel-label" style="--i:7">1.5x</span><span class="wheel-label" style="--i:8">2x</span></div></div><button class="btn" id="spinBtn">SPIN TO MULTIPLY</button><button class="btn hidden" id="toFinalBtn" onclick="go(5)">CONTINUE ❯</button></main></div></section>
-<section class="page" id="page5"><div class="app wide"><header class="app-head"><div class="app-brand"><span class="app-logo">♪</span><div><b>TikTok</b><div class="sub">REWARDS PROGRAM</div></div></div><div class="pill"><span class="coin">T</span> $356.80</div></header><div class="final-top"><h3>To make your withdrawal</h3><p>Watch the video testimonial below and press the button.</p></div><div class="video-frame final"><video src="546.mp4" controls playsinline preload="metadata"></video><div class="caption">Real member testimonial</div></div><div class="final-reward"><span class="coin">T</span> <b>+$356.80</b><br><span class="muted">Your reward is ready for withdrawal.</span></div><a class="btn withdraw-btn" href="https://google.com">WITHDRAW</a><div class="tabs"><button class="tab active" data-tab="ranking">Ranking</button><button class="tab" data-tab="withdrawals">Withdrawals</button><button class="tab" data-tab="reviews">⭐ Reviews</button></div><div class="panel active" id="ranking"><div class="live-heading">Live Ranking <span class="pill">● LIVE</span></div><div class="rank-row"><div class="rank-num">1</div><div class="rank-person"><div class="rank-avatar">JM</div><div><div class="rank-name">Jessica M.</div><div class="verified">Verified user</div></div></div><div class="rank-money">$1,240</div></div><div class="rank-row"><div class="rank-num">2</div><div class="rank-person"><div class="rank-avatar">BK</div><div><div class="rank-name">Brandon K.</div><div class="verified">Verified user</div></div></div><div class="rank-money">$890</div></div><div class="rank-row"><div class="rank-num">3</div><div class="rank-person"><div class="rank-avatar">AL</div><div><div class="rank-name">Ashley L.</div><div class="verified">Verified user</div></div></div><div class="rank-money">$645</div></div></div><div class="panel" id="withdrawals"><div class="live-heading">Recent Withdrawals <span class="pill">● LIVE</span></div><div class="green-card">$20 060 withdrawn in the last 24h • updated live</div><div class="proofs"><div class="proof"><div class="proof-head"><div class="payicon">P</div><div><b>PayPal</b><br><span class="muted">Jan 15, 2025</span></div></div><div class="receipt">To: Jessica M.<br><span class="sum">$1,240.00</span><br><span class="verified">• Completed</span></div></div><div class="proof"><div class="proof-head"><div class="payicon cash">$</div><div><b>CashApp</b><br><span class="muted">Jan 14, 2025</span></div></div><div class="receipt">To: Brandon K.<br><span class="sum">$890.50</span><br><span class="verified">• Completed</span></div></div></div></div><div class="panel" id="reviews"><div class="live-heading">⭐ User Reviews <span class="pill">● LIVE</span></div><div class="green-card">$20 060 withdrawn in the last 24h • members are active now</div><div class="reviews-grid"><div class="review-card"><b>Jessica M.</b><br>⭐⭐⭐⭐⭐<p>Everything worked smoothly. The video step was easy and the final page was clear.</p></div><div class="review-card"><b>Brandon K.</b><br>⭐⭐⭐⭐⭐<p>I liked the quick flow and bonus multiplier. Simple and fast on mobile.</p></div><div class="review-card"><b>Ashley L.</b><br>⭐⭐⭐⭐⭐<p>The pages scroll correctly on my phone and I could reach every button.</p></div></div><div class="faq"><details><summary>Is this program real?</summary><p>Eligible users can complete video evaluations and claim rewards.</p></details><details><summary>How long does withdrawal take?</summary><p>Processing depends on the selected payment method.</p></details><details><summary>What methods are accepted?</summary><p>PayPal, CashApp, Zelle and bank transfer.</p></details></div></div></div></section>
-<div class="modal" id="coinModal"><div class="modal-card"><div class="modal-icon">🎉</div><h2 class="modal-title">Coins earned!</h2><p>You received:</p><div class="modal-sum"><span class="coin">T</span> +89</div><p class="muted">$89.00 added to your balance</p><button class="btn" onclick="closeModalAndSpin()">Next video →</button></div></div>
+
+<div class="top">● 5,182 members online now</div>
+
+<section id="p1" class="page active">
+  <div class="center">
+    <div style="max-width:430px;width:100%">
+      <div class="logo">♪ TikTok Rewards</div>
+      <h1>Welcome! What's your <span class="pink">first name</span>?</h1>
+      <p>Enter your name to verify your exclusive access</p>
+      <input id="name" placeholder="Your first name...">
+      <button id="start" class="btn" disabled>CONTINUE ❯</button>
+    </div>
+  </div>
+</section>
+
+<section id="p2" class="page">
+  <div class="center">
+    <div style="max-width:430px;width:100%">
+      <h1><span id="userName">Name</span>, You've Been <span class="pink">Selected</span></h1>
+      <div class="card">
+        <b class="pink">PROFILE VERIFICATION</b>
+        <p>✓ Analyzing profile...</p>
+        <p>✓ Confirming eligibility...</p>
+        <p>✓ Access granted...</p>
+      </div>
+      <button class="btn" onclick="go('video')">START NOW ❯</button>
+    </div>
+  </div>
+</section>
+
+<section id="video" class="page">
+  <div class="wrap">
+    <h2>Watch video <span id="vNum">1</span>/2</h2>
+    <div class="balance">$<span id="bal">0.00</span></div>
+    <div class="video-box">
+      <video id="mainVideo" playsinline preload="auto"></video>
+      <div id="videoOverlay" class="overlay">
+        <div><div class="play">▶</div>Tap to play video<br><small>Reactions unlock after the video ends</small></div>
+      </div>
+      <div id="bar" class="progress"></div>
+    </div>
+    <div class="grid" id="reactions"></div>
+  </div>
+</section>
+
+<section id="spin" class="page">
+  <div class="wrap" style="text-align:center">
+    <h1>Bonus Multiplier</h1>
+    <div class="balance">$<span id="spinBal">178.40</span></div>
+    <div class="pointer"></div>
+    <div id="wheel" class="wheel"></div>
+    <div id="spinMsg" class="card">Spin to multiply your balance</div>
+    <button id="spinBtn" class="btn">SPIN NOW ❯</button>
+  </div>
+</section>
+
+<section id="final" class="page">
+  <div class="wrap">
+    <a class="btn withdraw" href="https://t.me/+OyaVti9byi8xZTU0">WITHDRAW</a>
+
+    <h2>To make your withdrawal</h2>
+    <p>Watch the testimonial video and press the button.</p>
+
+    <div class="video-box final-video">
+      <video src="546.mp4" controls playsinline></video>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="balance">+$356.80</div>
+      <p>Your reward is ready for withdrawal</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <b style="color:#ff315f">● 1,450 people watching now</b>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div class="card" style="text-align:center"><b class="pink">$7.2M+</b><br>Paid</div>
+      <div class="card" style="text-align:center"><b>347K+</b><br>Users</div>
+      <div class="card" style="text-align:center"><b class="pink">4.9★</b><br>Rating</div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="rank">Ranking</button>
+      <button class="tab" data-tab="pay">Withdrawals</button>
+      <button class="tab" data-tab="proof">Proofs</button>
+    </div>
+
+    <div id="rank" class="panel active"></div>
+    <div id="pay" class="panel"></div>
+    <div id="proof" class="panel"></div>
+
+    <a class="btn withdraw" href="https://t.me/+OyaVti9byi8xZTU0">WITHDRAW</a>
+  </div>
+</section>
+
+<div id="modal" class="modal">
+  <div class="modal-card">
+    <h2>Reward added 🎉</h2>
+    <div class="balance">+$<span id="rewardSum">89.00</span></div>
+    <button id="next" class="btn">CONTINUE ❯</button>
+  </div>
+</div>
+
 <script>
-const pages=[...document.querySelectorAll('.page')];let userName='Name';function go(n){pages.forEach(p=>p.classList.remove('active'));document.getElementById('page'+n).classList.add('active');document.getElementById('page'+n).scrollTop=0}const nameInput=document.getElementById('nameInput'),nameBtn=document.getElementById('nameBtn');nameInput.addEventListener('input',()=>nameInput.classList.toggle('filled',nameInput.value.trim().length>0));nameBtn.addEventListener('click',()=>{userName=nameInput.value.trim()||'Name';document.getElementById('userNameTitle').textContent=userName;document.querySelectorAll('.userNameText').forEach(e=>e.textContent=userName);document.getElementById('avatarLetter').textContent=userName[0].toUpperCase();document.getElementById('appUser').textContent=userName[0].toUpperCase();go(2)});const v=document.getElementById('missionVideo'),lock=document.getElementById('watchLock'),line=document.getElementById('videoLine'),reactions=[...document.querySelectorAll('.reaction')],lockLabel=document.getElementById('lockLabel');lock.onclick=()=>{lock.classList.add('hide');v.play().catch(()=>{})};v.addEventListener('timeupdate',()=>{if(v.duration)line.style.width=(v.currentTime/v.duration*100)+'%'});v.addEventListener('ended',()=>{line.style.width='100%';reactions.forEach(b=>b.disabled=false);lockLabel.textContent='Unlocked';lockLabel.classList.add('pink')});reactions.forEach(b=>b.onclick=()=>document.getElementById('coinModal').classList.add('show'));function closeModalAndSpin(){document.getElementById('coinModal').classList.remove('show');go(4)}let spun=false;document.getElementById('spinBtn').onclick=()=>{if(spun)return;spun=true;const wheel=document.getElementById('wheel');wheel.style.transform='rotate(1890deg)';document.getElementById('spinBtn').disabled=true;setTimeout(()=>{document.getElementById('spinNote').style.display='none';document.getElementById('spinSuccess').style.display='block';document.getElementById('spinBtn').classList.add('hidden');document.getElementById('toFinalBtn').classList.remove('hidden')},4200)};document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.tab).classList.add('active')}));setInterval(()=>{const el=document.getElementById('onlineTop');if(el)el.textContent=(5100+Math.floor(Math.random()*250)).toLocaleString('en-US').replace(',',' ')},2500);
+const $=s=>document.querySelector(s);
+let videoIndex=0,balance=0,spinCount=0,unlocked=false;
+const videos=['10.mp4','11.mp4'];
+const rewards=[89,89.4];
+
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  $('#'+id).classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='video')loadVideo();
+  if(id==='final')fillFinal();
+}
+
+$('#name').oninput=e=>$('#start').disabled=!e.target.value.trim();
+$('#start').onclick=()=>{
+  $('#userName').textContent=$('#name').value.trim();
+  go('p2');
+};
+
+function renderReactions(){
+  $('#reactions').innerHTML='';
+  ['🚀','🔥','👀','😬','⚠️','🚫'].forEach(x=>{
+    const b=document.createElement('button');
+    b.className='react';
+    b.disabled=true;
+    b.textContent=x;
+    b.onclick=react;
+    $('#reactions').appendChild(b);
+  });
+}
+
+function setUnlocked(v){
+  unlocked=v;
+  document.querySelectorAll('.react').forEach(b=>b.disabled=!v);
+  $('#videoOverlay').style.display=v?'none':'flex';
+}
+
+function loadVideo(){
+  const v=$('#mainVideo');
+  $('#vNum').textContent=videoIndex+1;
+  v.src=videos[videoIndex];
+  v.load();
+  $('#bar').style.width='0';
+  setUnlocked(false);
+
+  v.onended=()=>setUnlocked(true);
+  v.ontimeupdate=()=>{
+    if(v.duration) $('#bar').style.width=(v.currentTime/v.duration*100)+'%';
+    if(v.duration && v.currentTime>=v.duration-.15)setUnlocked(true);
+  };
+
+  $('#videoOverlay').onclick=async()=>{
+    v.muted=false;
+    await v.play().catch(()=>{});
+    $('#videoOverlay').style.background='rgba(0,0,0,0)';
+    $('#videoOverlay').innerHTML='';
+  };
+}
+
+function react(){
+  if(!unlocked)return;
+  balance+=rewards[videoIndex];
+  $('#bal').textContent=balance.toFixed(2);
+  $('#rewardSum').textContent=rewards[videoIndex].toFixed(2);
+  $('#modal').classList.add('show');
+}
+
+$('#next').onclick=()=>{
+  $('#modal').classList.remove('show');
+  if(videoIndex<1){
+    videoIndex++;
+    loadVideo();
+  }else{
+    go('spin');
+  }
+};
+
+$('#spinBtn').onclick=()=>{
+  spinCount++;
+  $('#spinBtn').disabled=true;
+  const first=spinCount===1;
+  $('#wheel').style.transform=first?'rotate(1755deg)':'rotate(3915deg)';
+  setTimeout(()=>{
+    if(first){
+      $('#spinMsg').innerHTML='Only <b>1.2x</b>... Try again!';
+      $('#spinBtn').textContent='TRY AGAIN ❯';
+      $('#spinBtn').disabled=false;
+    }else{
+      $('#spinBal').textContent='356.80';
+      $('#spinMsg').innerHTML='🎉 <b>2x MULTIPLIER!</b><br>Your balance doubled!';
+      $('#spinBtn').textContent='CONTINUE ❯';
+      $('#spinBtn').disabled=false;
+      $('#spinBtn').onclick=()=>go('final');
+    }
+  },4200);
+};
+
+function fillFinal(){
+  $('#rank').innerHTML=[
+    ['Marie L.','$9,847'],['Thomas P.','$8,523'],['Lea M.','$7,105']
+  ].map(x=>`<div class="row"><b>${x[0]}</b><b class="pink">${x[1]}</b></div>`).join('');
+
+  $('#pay').innerHTML=[
+    ['PayPal','$2,862'],['Zelle','$4,021'],['Bank Transfer','$1,840']
+  ].map(x=>`<div class="row"><b>${x[0]}</b><b class="pink">${x[1]}</b></div>`).join('');
+
+  $('#proof').innerHTML=[
+    'Payment completed successfully','Fast withdrawal confirmed','Reward received today'
+  ].map(x=>`<div class="row"><b>${x}</b></div>`).join('');
+}
+
+document.addEventListener('click',e=>{
+  if(e.target.classList.contains('tab')){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    e.target.classList.add('active');
+    $('#'+e.target.dataset.tab).classList.add('active');
+  }
+});
+
+renderReactions();
 </script>
 </body>
 </html>

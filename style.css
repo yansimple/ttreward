@@ -1845,3 +1845,49 @@ button,input {
 .tab{
     padding:14px 18px;
 }
+
+.video-frame.final{
+    position:relative!important;
+    aspect-ratio:9/16!important;
+    width:min(390px, calc(100vw - 36px))!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:22px auto!important;
+    border:2px solid #ff315f!important;
+    border-radius:18px!important;
+    overflow:hidden!important;
+    background:#000!important;
+}
+
+.video-frame.final video{
+    width:100%!important;
+    height:100%!important;
+    aspect-ratio:9/16!important;
+    object-fit:cover!important;
+    display:block!important;
+}
+
+.final-video-play{
+    position:absolute!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    width:78px!important;
+    height:78px!important;
+    border:0!important;
+    border-radius:50%!important;
+    background:#fff!important;
+    color:#ff315f!important;
+    font-size:34px!important;
+    font-weight:900!important;
+    z-index:20!important;
+    display:grid!important;
+    place-items:center!important;
+    cursor:pointer!important;
+    box-shadow:0 14px 34px rgba(0,0,0,.28)!important;
+}
+
+.final-video-play.hide{
+    display:none!important;
+}
